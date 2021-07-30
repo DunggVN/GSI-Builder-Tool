@@ -87,7 +87,7 @@ jobs:
             OUTPUT="${{ steps.config.outputs.output_type }}"
             BASE="${{ steps.config.outputs.url }}"
             SOURCEFORGE="${{ steps.config.outputs.sourceforge_url }}"
-            for file in build/*.txt; do
+            for file in ErfanGSIs-TrebleExperience/output/*.txt; do
               filename=$(basename -- "$file")
               sed -i "1s/^/Name: ${filename%.*}\n/" "$file"
               printf "\n\nBase Firmware Link: $BASE" >> "$file"
