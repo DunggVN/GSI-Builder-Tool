@@ -70,7 +70,7 @@ jobs:
       - name: Uploading
         run: |
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
-          sshpass -p "${{ secrets.PASSWORD }}" rsync -arsP -e ssh build/ "${{ secrets.USERNAME }}@frs.sourceforge.net:${{ steps.config.outputs.sourceforge_dir }}"
+          sshpass -p "${{ secrets.PASSWORD }}" rsync -arsP -e ssh ErfanGSIs-TrebleExperience/output "${{ secrets.USERNAME }}@frs.sourceforge.net:${{ steps.config.outputs.sourceforge_dir }}"
       - name: Telegram Notify
         if: ${{ steps.config.outputs.tg_chat_ids != 0 }}
         run: |
