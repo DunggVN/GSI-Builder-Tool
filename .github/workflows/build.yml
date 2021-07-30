@@ -61,7 +61,9 @@ jobs:
           sudo ./ErfanGSIs-TrebleExperience/url2GSI.sh "${{ steps.config.outputs.url }}" "${{ steps.config.outputs.firmware_type }}" --aonly ${{ steps.config.outputs.extra_args }} -d
       - name: Zipping GSI
         run: |
-          7za a -tzip -r ${{ steps.config.outputs.gsi_name }} ErfanGSIs-TrebleExperience/output/*.img build/
+          mkdir build/
+          sudo mv ErfanGSIs-TrebleExperience/output/*.img build/
+          7za a -tzip -r ${{ steps.config.outputs.gsi_name }} build/
       - name: Setup SSH
         uses: fastai/workflows/ssh@master
         with:
