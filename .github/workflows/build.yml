@@ -61,7 +61,7 @@ jobs:
           sudo ./ErfanGSIs-TrebleExperience/url2GSI.sh "${{ steps.config.outputs.url }}" "${{ steps.config.outputs.firmware_type }}" --aonly ${{ steps.config.outputs.extra_args }} -d
       - name: Zipping GSI
         run: |
-          7za a -tzip -r ${{ steps.config.outputs.gsi_name }} ErfanGSIs-TrebleExperience/output/*.img
+          7za a -tzip -r ${{ steps.config.outputs.gsi_name }} ErfanGSIs-TrebleExperience/output/*.img build/
       - name: Setup SSH
         uses: fastai/workflows/ssh@master
         with:
@@ -70,7 +70,7 @@ jobs:
       - name: Uploading
         run: |
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
-          sshpass -p "${{ secrets.PASSWORD }}" rsync -arsP -e ssh ErfanGSIs-TrebleExperience/output "${{ secrets.USERNAME }}@frs.sourceforge.net:${{ steps.config.outputs.sourceforge_dir }}"
+          sshpass -p "${{ secrets.PASSWORD }}" rsync -arsP -e ssh build/ "${{ secrets.USERNAME }}@frs.sourceforge.net:${{ steps.config.outputs.sourceforge_dir }}"
       - name: Telegram Notify
         if: ${{ steps.config.outputs.tg_chat_ids != 0 }}
         run: |
