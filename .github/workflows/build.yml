@@ -1,4 +1,4 @@
-name: OEM GSI Builder
+name: Building GSI
 
 on:
   workflow_dispatch:
@@ -63,7 +63,6 @@ jobs:
           mkdir build/
           sudo mv ErfanGSIs-TrebleExperience/output/*.img build/
           gzip -r build/
-          sudo mv ErfanGSIs-TrebleExperience/output/*.txt build/
       - name: Setup SSH
         uses: fastai/workflows/ssh@master
         with:
