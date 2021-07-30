@@ -21,10 +21,7 @@ jobs:
           sudo -E apt-get update
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
-      - name: Installing Some Tools 
-        run: |
           sudo -E apt-get -qq update
-          sudo -E apt-get -qq install git openjdk-8-jdk p7zip
       - name: Loading Configuration
         uses: falti/dotenv-action@v0.2.5
         id: config
@@ -38,7 +35,6 @@ jobs:
 
           required "${{ steps.config.outputs.tool_repo }}" "TOOL_REPO config"
           required "${{ steps.config.outputs.url }}" "URL config"
-          required "${{ steps.config.outputs.gsi_name }}" "GSI_NAME config"
           required "${{ steps.config.outputs.firmware_type }}" "FIRMWARE_TYPE config"
           required "${{ steps.config.outputs.sourceforge_dir }}" "SOURCEFORGE_DIR config"
           required "${{ steps.config.outputs.output_type }}" "OUTPUT_TYPE config"
@@ -64,6 +60,7 @@ jobs:
           mkdir build/
           sudo mv ErfanGSIs-TrebleExperience/output/*.img build/
           gzip -r build/
+          sudo mv ErfanGSIs-TrebleExperience/output/*.txt build/
       - name: Setup SSH
         uses: fastai/workflows/ssh@master
         with:
