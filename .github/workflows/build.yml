@@ -26,10 +26,9 @@ jobs:
           sudo -E apt-get -qq update
           sudo -E apt-get -qq install git openjdk-8-jdk p7zip
       - name: Load Configuration
-        run: |
-          uses: falti/dotenv-action@v0.2.5
-          id: config
-          with:
+        uses: falti/dotenv-action@v0.2.5
+        id: config
+         with:
            path: config.env
       - name: Check Configuration
         run: |
