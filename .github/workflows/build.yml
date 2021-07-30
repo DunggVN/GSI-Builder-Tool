@@ -63,7 +63,7 @@ jobs:
         run: |
           mkdir build/
           sudo mv ErfanGSIs-TrebleExperience/output/*.img build/
-          7za a -tzip -r ${{ steps.config.outputs.gsi_name }} build/
+          gzip -r build/
       - name: Setup SSH
         uses: fastai/workflows/ssh@master
         with:
