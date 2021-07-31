@@ -13,15 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Cleaning Some Stuff
-        run: |
-          docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
-          sudo -E apt-get update
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
-          sudo -E apt-get -qq update
       - name: Loading Configuration
         uses: falti/dotenv-action@v0.2.5
         id: config
